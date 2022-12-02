@@ -1,0 +1,32 @@
+{
+  "name": "ebay/digital-signature-php-sdk",
+  "version": "1.0",
+  "description": "An SDK for using eBay's APIs that require a digital signature",
+  "license": "Apache-2.0",
+  "type": "library",
+  "keywords": ["digital signature","API","security","cryptography"],
+  "homepage": "https://github.com/eBay/digital-signature-php-sdk",
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "runz0rd/mapper-php": "^2.2",
+    "phpseclib/phpseclib": "~3.0",
+    "phpunit/phpunit": "^9.5",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ebay\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Ulrich Herberg",
+      "email": "uherberg@ebay.com"
+    },
+    {
+      "name": "Arturas Sendrauskas",
+      "email": "arsendrauskas@ebay.com"
+    }
+  ]
+}

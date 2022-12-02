@@ -1,0 +1,12 @@
+{
+  "digestAlgorithm": "sha-256",
+  "algorithm": "Ed25519",
+  "privateKey": "./tests/keys/ed25519/privatekey.pem",
+  "jwe": "jwe",
+  "signatureParams": [
+    "x-ebay-signature-key",
+    "@method",
+    "@path",
+    "@authority"
+  ]
+}
