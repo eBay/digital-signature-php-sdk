@@ -45,11 +45,20 @@ PHP: 7.4 or higher
 
 ### Install
 
-Adding dependency:
+In order to use this SDK, add it to your PHP application via composer:
 
 ```shell
+composer require ebay/digital-signature-php-sdk
 composer update
 ```
+
+In your code, add this line to return all headers including signature headers:
+
+```
+$headers = $signature->generateSignatureHeaders($yourHeaders, $apiUrl, $method, $body);
+```
+
+Please also check the [example](#Running-the-example)
 
 ### Configure
 
