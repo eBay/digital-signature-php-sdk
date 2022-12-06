@@ -2,8 +2,6 @@
 
 namespace Ebay\DigitalSignature;
 
-include_once('vendor/autoload.php');
-
 use phpseclib3\Crypt\PublicKeyLoader;
 
 class SignatureService {

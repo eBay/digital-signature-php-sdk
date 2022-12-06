@@ -1,6 +1,5 @@
 {
   "name": "ebay/digital-signature-php-sdk",
-  "version": "1.0",
   "description": "An SDK for using eBay's APIs that require a digital signature",
   "license": "Apache-2.0",
   "type": "library",

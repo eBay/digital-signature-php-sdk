@@ -2,8 +2,6 @@
 
 namespace Ebay\DigitalSignature;
 
-require 'vendor/autoload.php';
-
 use Mapper\ModelMapper;
 
 class Signature {

@@ -2,8 +2,6 @@
 
 namespace Ebay\DigitalSignature;
 
-require 'vendor/autoload.php';
-
 use PHPUnit\Framework\TestCase;
 
 class SignatureTest extends TestCase {
