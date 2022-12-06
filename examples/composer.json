@@ -1,11 +1,5 @@
 {
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../"
-    }
-  ],
   "require": {
-    "ebay/digital-signature-php-sdk": ">=1.0"
+    "ebay/digital-signature-php-sdk": ">=1.0.0"
   }
 }
