@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfda63edb62410ae639874a80858a10f",
+    "content-hash": "104013ceeb76d2b8ca087d02e4659738",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -78,11 +78,17 @@
         },
         {
             "name": "ebay/digital-signature-php-sdk",
-            "version": "1.0",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eBay/digital-signature-php-sdk.git",
+                "reference": "5a765f31b686344d275b9c85c63c6beaf499bd15"
+            },
             "dist": {
-                "type": "path",
-                "url": "..",
-                "reference": "d574572e3d1a0edec9d745dde3f388eff65b22d5"
+                "type": "zip",
+                "url": "https://api.github.com/repos/eBay/digital-signature-php-sdk/zipball/5a765f31b686344d275b9c85c63c6beaf499bd15",
+                "reference": "5a765f31b686344d275b9c85c63c6beaf499bd15",
+                "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
@@ -98,6 +104,10 @@
                     "Ebay\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
             "authors": [
                 {
                     "name": "Ulrich Herberg",
@@ -109,9 +119,18 @@
                 }
             ],
             "description": "An SDK for using eBay's APIs that require a digital signature",
-            "transport-options": {
-                "relative": true
-            }
+            "homepage": "https://github.com/eBay/digital-signature-php-sdk",
+            "keywords": [
+                "api",
+                "cryptography",
+                "digital signature",
+                "security"
+            ],
+            "support": {
+                "issues": "https://github.com/eBay/digital-signature-php-sdk/issues",
+                "source": "https://github.com/eBay/digital-signature-php-sdk/tree/1.0.0"
+            },
+            "time": "2022-12-06T13:22:04+00:00"
         },
         {
             "name": "myclabs/deep-copy",
