@@ -122,8 +122,26 @@ class SignatureService {
     }
 
     //Getting authority from an API call endpoint
-    private function getAuthority($endpoint): string {
-        return parse_url($endpoint)['host'];
+    private function getAuthority($endpoint): string
+    {
+        $urlParsed = parse_url($endpoint);
+        $result = $urlParsed['host'];
+
+        if (array_key_exists('scheme', $urlParsed) &&
+            array_key_exists('port', $urlParsed)) {
+
+            $scheme = $urlParsed['scheme'];
+            $port = $urlParsed['port'];
+
+            echo "scheme: " . $scheme . " port: ". $port;
+
+            if ($scheme == "https" && $port != 443
+                || $scheme == "http" && $port != 80) {
+                $result .= ":" . $port;
+            }
+        }
+
+        return $result;
     }
 
     //Getting path from an API call endpoint
