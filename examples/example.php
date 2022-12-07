@@ -20,7 +20,7 @@ $body = '{
     "reasonForRefund": "ITEM_NOT_AS_DESCRIBED",
     "comment": "public API test_order_partial_refund"
 }';
-$headers = $signature->generateSignatureHeaders($headers, "https://api.sandbox.ebay.com/sell/fulfillment/v1/order/14-00032-43825/issue_refund", "POST", $body);
+$headers = $signature->generateSignatureHeaders($headers, $endpoint, "POST", $body);
 
 //Making a call
 $ch = curl_init($endpoint);
