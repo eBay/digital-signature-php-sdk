@@ -132,9 +132,7 @@ class SignatureService {
 
             $scheme = $urlParsed['scheme'];
             $port = $urlParsed['port'];
-
-            echo "scheme: " . $scheme . " port: ". $port;
-
+            
             if ($scheme == "https" && $port != 443
                 || $scheme == "http" && $port != 80) {
                 $result .= ":" . $port;
