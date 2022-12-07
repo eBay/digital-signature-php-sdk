@@ -118,7 +118,6 @@ class SignatureService {
         //Signature params pseudo header and timestamp are formatted differently that previous ones
         $signatureBase .= sprintf('"@signature-params": (%s);created=%s', $this->getParamsAsString($signatureParams), $timestamp);
 
-        echo $signatureBase;
         return $signatureBase;
     }
 
