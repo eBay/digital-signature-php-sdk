@@ -38,10 +38,10 @@ class SignatureService {
      * @param SignatureConfig $signatureConfig signature configuration
      * @return string signatureInputHeader
      */
-    public function generateSignatureInput(string $timestamp, SignatureConfig $signatureConfig): string {
+    public function generateSignatureInput(bool $contains_body, string $timestamp, SignatureConfig $signatureConfig): string {
         $signatureParams = $signatureConfig->signatureParams;
         return sprintf('sig1=(%s);created=%s',
-            $this->getParamsAsString($signatureParams),
+            $this->getParamsAsString($contains_body, $signatureParams),
             $timestamp);
     }
 
@@ -55,8 +55,8 @@ class SignatureService {
      * @param SignatureConfig $signatureConfig signature config
      * @return string signature
      */
-    public function generateSignature(array $headers, string $method, string $endpoint, string $timestamp, SignatureConfig $signatureConfig): string {
-        $signatureBase = $this->calculateBase($headers, $method, $endpoint, $timestamp, $signatureConfig);
+    public function generateSignature(bool $contains_body, array $headers, string $method, string $endpoint, string $timestamp, SignatureConfig $signatureConfig): string {
+        $signatureBase = $this->calculateBase($contains_body, $headers, $method, $endpoint, $timestamp, $signatureConfig);
         $privateKeyStr = $signatureConfig->privateKeyStr;
 
         //Signing signature base with private key
@@ -81,7 +81,7 @@ class SignatureService {
      * @param SignatureConfig $signatureConfig signature config
      * @return string base string
      */
-    private function calculateBase(array $headers, string $method, string $endpoint, string $timestamp, SignatureConfig $signatureConfig): string {
+    private function calculateBase(bool $contains_body, array $headers, string $method, string $endpoint, string $timestamp, SignatureConfig $signatureConfig): string {
         //Signature base is a string that is signed and BASE64 encoded. Each signature param should be enclosed in double quotes.
         //Param and value separated by colon and space. Value is not enclosed.
         //Each param / param value pair needs to be in a separate line, with simple \n linebreak
@@ -110,13 +110,15 @@ class SignatureService {
                     $signatureBase .= '"@query": ' . $this->getQuery($endpoint);
                     break;
                 default:
-                    $signatureBase .= '"' . $signatureParam . '": ' . $lowerCaseHeaders[$signatureParam];
+                    if (array_key_exists($signatureParam, $lowerCaseHeaders)) {
+                        $signatureBase .= '"' . $signatureParam . '": ' . $lowerCaseHeaders[$signatureParam];
+                    }
             }
             //Adding a linebreak between params
             $signatureBase .= "\n";
         }
         //Signature params pseudo header and timestamp are formatted differently that previous ones
-        $signatureBase .= sprintf('"@signature-params": (%s);created=%s', $this->getParamsAsString($signatureParams), $timestamp);
+        $signatureBase .= sprintf('"@signature-params": (%s);created=%s', $this->getParamsAsString($contains_body, $signatureParams), $timestamp);
 
         return $signatureBase;
     }
@@ -156,8 +158,14 @@ class SignatureService {
     }
 
     //Getting params as string
-    private function getParamsAsString($signature_params): string {
+    private function getParamsAsString(bool $contains_body, array $signature_params): string {
         //Params need to be enclosed in double quotes and separated with space
-        return '"' . implode('" "', $signature_params) . '"';
+        if ($contains_body === true) {
+            return '"' . implode('" "', $signature_params) . '"';
+        } else {
+            return '"' . implode('" "', array_filter($signature_params, function($element) {
+                return strtolower($element) !== "content-digest";
+            })) . '"';
+        }
     }
 }

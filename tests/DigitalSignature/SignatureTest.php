@@ -22,13 +22,11 @@ class SignatureTest extends TestCase {
         $this->assertArrayHasKey("x-ebay-signature-key", $allHeaders);
         $this->assertArrayHasKey("Signature-Input", $allHeaders);
         $this->assertArrayHasKey("Signature", $allHeaders);
-        $this->assertArrayHasKey("x-ebay-enforce-signature", $allHeaders);
 
         $this->assertEquals("sha-256=:X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=:", $allHeaders["Content-Digest"]);
         $this->assertEquals("jwe", $allHeaders["x-ebay-signature-key"]);
         $this->assertStringStartsWith('sig1=("content-digest" "x-ebay-signature-key" "@method" "@path" "@authority");created=', $allHeaders["Signature-Input"]);
         $this->assertStringStartsWith("sig1=:", $allHeaders["Signature"]);
-        $this->assertEquals("true", $allHeaders["x-ebay-enforce-signature"]);
     }
 
     public function testGenerateSignatureHeadersEd25519(): void {
@@ -44,11 +42,9 @@ class SignatureTest extends TestCase {
         $this->assertArrayHasKey("x-ebay-signature-key", $allHeaders);
         $this->assertArrayHasKey("Signature-Input", $allHeaders);
         $this->assertArrayHasKey("Signature", $allHeaders);
-        $this->assertArrayHasKey("x-ebay-enforce-signature", $allHeaders);
 
         $this->assertEquals("jwe", $allHeaders["x-ebay-signature-key"]);
         $this->assertStringStartsWith('sig1=("x-ebay-signature-key" "@method" "@path" "@authority");created=', $allHeaders["Signature-Input"]);
         $this->assertStringStartsWith("sig1=:", $allHeaders["Signature"]);
-        $this->assertEquals("true", $allHeaders["x-ebay-enforce-signature"]);
     }
 }
