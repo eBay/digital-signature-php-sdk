@@ -4,6 +4,7 @@
   "privateKey": "./tests/keys/ed25519/privatekey.pem",
   "jwe": "jwe",
   "signatureParams": [
+    "content-digest",
     "x-ebay-signature-key",
     "@method",
     "@path",

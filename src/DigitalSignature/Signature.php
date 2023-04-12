@@ -24,14 +24,14 @@ class Signature {
      * @return array All headers including the initially transmitted
      */
     public function generateSignatureHeaders(array $headers, string $endpoint, string $method, string $body = null): array {
-        if (!is_null($body)) {
+        $contains_body = !is_null($body);
+        if ($contains_body === true) {
             $headers["Content-Digest"] = $this->signatureService->generateContentDigest($body, $this->signatureConfig);
         }
         $timestamp = time();
         $headers["x-ebay-signature-key"] = $this->signatureService->generateSignatureKey($this->signatureConfig);
-        $headers["Signature-Input"] = $this->signatureService->generateSignatureInput($timestamp, $this->signatureConfig);
-        $headers["Signature"] = $this->signatureService->generateSignature($headers, $method, $endpoint, $timestamp, $this->signatureConfig);
-        $headers["x-ebay-enforce-signature"] = "true";
+        $headers["Signature-Input"] = $this->signatureService->generateSignatureInput($contains_body, $timestamp, $this->signatureConfig);
+        $headers["Signature"] = $this->signatureService->generateSignature($contains_body, $headers, $method, $endpoint, $timestamp, $this->signatureConfig);
 
         return $headers;
     }
