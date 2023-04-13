@@ -11,12 +11,6 @@ class SignatureConfig
     public $digestAlgorithm;
 
     /**
-     * @required
-     * @var string
-     */
-    public $algorithm;
-
-    /**
      * @var string
      */
     public $privateKey;
