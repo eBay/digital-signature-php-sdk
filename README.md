@@ -67,7 +67,6 @@ In order to run the example application the [example-config.json](./examples/exa
 ```json
 {
   "digestAlgorithm": "<Algorithm used for generating content digest>",
-  "algorithm": "<Algorithm used for signature>",
   "jwe": "<JWE generated using Key Management API>",
   "privateKey": "<Path to private key generated using Key Management API>",
   "privateKeyStr": "<(alternative to privateKey) Private key generated using Key Management API, including -----BEGIN PRIVATE KEY----- and -----END PRIVATE KEY----- key headers>",
