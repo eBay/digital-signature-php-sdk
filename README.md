@@ -79,13 +79,12 @@ In order to run the example application the [example-config.json](./examples/exa
 | Name | Type | Description                                                                                                                                                                                                                                   |
 | :------ | :------ |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `digestAlgorithm` | string | The algorithm for generating the Content-Digest header. Supported vales are `sha-256` and `sha-512`                                                                                                                                           |
-| `algorithm` | string | The algorithm for signature. Supported vales are `Ed25519` and `RSA`                                                                                                                                                                          |
 | `jwe` | string | The JWE generated using the [Key Management API](https://developer.ebay.com/api-docs/developer/key-management/overview.html)                                                                                                                  |
 | `privateKey` | string | The privateKey generated using the [Key Management API](https://developer.ebay.com/api-docs/developer/key-management/overview.html)                                                                                                           |
 | `privateKeyStr` | string | (alternative to privateKey) Private key generated using [Key Management API](https://developer.ebay.com/api-docs/developer/key-management/overview.html), surrounded by -----BEGIN PRIVATE KEY----- and -----END PRIVATE KEY----- key headers |
 | `signatureParams` | Array | The list of headers that indicates which headers and pseudo-headers are included, as well as the order in which they are used when calculating the signature                                                                                  |
 
-Note: You can refer to [example.php](examples/example.php) for an example of how to use the SDK.
+Note: You can refer to [example-GET.php](examples/example-GET.php) or [example-POST.php](examples/example-POST.php) for examples of how to use the SDK (for a GET call without request body and for a POST call with body, respectively).
 
 ### Running the example
 
@@ -93,14 +92,14 @@ Note: You can refer to [example.php](examples/example.php) for an example of how
 ```shell
 cd examples
 composer update
-php example.php
+php example-GET.php # or php example-POST.php
 ```
 
 * Signing Configuration Sample: [example-config.json](examples/example-config.json).
 
 ## License
 
-Copyright 2022 eBay Inc.
+Copyright 2023 eBay Inc.
 Developer: Ulrich Herberg and Arturas Sendrauskas
 
 Licensed under the Apache License, Version 2.0 (the "License");
