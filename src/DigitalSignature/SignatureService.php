@@ -112,6 +112,8 @@ class SignatureService {
                 default:
                     if (array_key_exists($signatureParam, $lowerCaseHeaders)) {
                         $signatureBase .= '"' . $signatureParam . '": ' . $lowerCaseHeaders[$signatureParam];
+                    } else {
+                        continue 2; // skip the new line
                     }
             }
             //Adding a linebreak between params
