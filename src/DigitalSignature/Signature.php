@@ -28,7 +28,7 @@ class Signature {
         if ($contains_body === true) {
             $headers["Content-Digest"] = $this->signatureService->generateContentDigest($body, $this->signatureConfig);
         }
-        $timestamp = time();
+        $timestamp = (string) time();
         $headers["x-ebay-signature-key"] = $this->signatureService->generateSignatureKey($this->signatureConfig);
         $headers["Signature-Input"] = $this->signatureService->generateSignatureInput($contains_body, $timestamp, $this->signatureConfig);
         $headers["Signature"] = $this->signatureService->generateSignature($contains_body, $headers, $method, $endpoint, $timestamp, $this->signatureConfig);
